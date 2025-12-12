@@ -1,0 +1,43 @@
+export const blogPosts = [
+  {
+    id: 1,
+    slug: 'getting-started-with-nextjs-14',
+    title: 'Getting Started with Next.js 14: Complete Guide',
+    excerpt: 'Panduan lengkap untuk memulai pengembangan dengan Next.js 14, termasuk App Router, Server Components, dan fitur-fitur terbaru.',
+    date: '2024-01-15',
+    category: 'Web Development',
+    readTime: '8 min read',
+    image: 'https://via.placeholder.com/800x400/8b5cf6/ffffff?text=Next.js+14',
+  },
+  {
+    id: 2,
+    slug: 'building-modern-game-servers',
+    title: 'Building Modern Game Servers: Best Practices',
+    excerpt: 'Tips dan trik untuk membangun game server yang scalable, performant, dan user-friendly dengan teknologi modern.',
+    date: '2024-01-10',
+    category: 'Game Development',
+    readTime: '12 min read',
+    image: 'https://via.placeholder.com/800x400/3b82f6/ffffff?text=Game+Server',
+  },
+  {
+    id: 3,
+    slug: 'optimizing-react-performance',
+    title: 'Optimizing React Performance: Advanced Techniques',
+    excerpt: 'Teknik-teknik advanced untuk mengoptimalkan performa aplikasi React, termasuk memoization, code splitting, dan lazy loading.',
+    date: '2024-01-05',
+    category: 'Web Development',
+    readTime: '10 min read',
+    image: 'https://via.placeholder.com/800x400/8b5cf6/ffffff?text=React+Performance',
+  },
+  {
+    id: 4,
+    slug: 'tailwindcss-tips-tricks',
+    title: 'TailwindCSS Tips & Tricks for Modern UI',
+    excerpt: 'Koleksi tips dan trik untuk memaksimalkan penggunaan TailwindCSS dalam membangun UI modern dan responsive.',
+    date: '2024-01-01',
+    category: 'Design',
+    readTime: '6 min read',
+    image: 'https://via.placeholder.com/800x400/3b82f6/ffffff?text=TailwindCSS',
+  },
+]
+
