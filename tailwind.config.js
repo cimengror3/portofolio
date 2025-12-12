@@ -10,6 +10,7 @@ module.exports = {
       colors: {
         'dark': '#0d0d0d',
         'dark-secondary': '#1a1a1a',
+        'border': '#1f1f1f',
         'purple-neon': '#8b5cf6',
         'blue-neon': '#3b82f6',
         'soft-white': '#f3f4f6',

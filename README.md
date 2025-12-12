@@ -27,15 +27,27 @@ Website portofolio modern, aesthetic, profesional, elegan, dan mewah untuk Devel
 
 ## Getting Started
 
+### ⚠️ Important: Setup npm PATH
+
+Sebelum menjalankan perintah npm, pastikan untuk menjalankan:
+
+```bash
+source ~/.zshrc
+```
+
+Ini diperlukan agar npm dapat terbaca dan digunakan dengan benar.
+
 ### Installation
 
 ```bash
+source ~/.zshrc
 npm install
 ```
 
 ### Development
 
 ```bash
+source ~/.zshrc
 npm run dev
 ```
 
@@ -44,6 +56,7 @@ Buka [http://localhost:3000](http://localhost:3000) di browser.
 ### Build
 
 ```bash
+source ~/.zshrc
 npm run build
 npm start
 ```
