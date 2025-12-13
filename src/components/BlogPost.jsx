@@ -6,7 +6,7 @@ import Link from 'next/link'
 
 export default function BlogPost({ post }) {
   return (
-    <article className="relative min-h-screen py-20 px-4 sm:px-6 lg:px-8">
+    <article className="relative min-h-screen py-20 px-4 sm:px-6 lg:px-8" style={{ zIndex: 1 }}>
       <div className="max-w-4xl mx-auto">
         {/* Back Button */}
         <Link href="/blog">

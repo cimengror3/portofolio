@@ -10,10 +10,24 @@
   body {
     @apply bg-dark text-soft-white;
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
 
   html {
     scroll-behavior: smooth;
+  }
+
+  button {
+    font-family: inherit;
+    font-weight: 600;
+    letter-spacing: 0.025em;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    letter-spacing: -0.025em;
   }
 }
 

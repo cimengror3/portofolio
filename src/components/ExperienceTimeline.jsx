@@ -1,14 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { useEffect, useRef } from 'react'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import { FiBriefcase, FiCode, FiServer, FiTrendingUp } from 'react-icons/fi'
-
-if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger)
-}
 
 const experiences = [
   {
@@ -55,6 +48,7 @@ const containerVariants = {
     opacity: 1,
     transition: {
       staggerChildren: 0.2,
+      delayChildren: 0.1,
     },
   },
 }
@@ -66,31 +60,17 @@ const itemVariants = {
     x: 0,
     transition: {
       duration: 0.6,
+      ease: 'easeOut',
     },
   },
 }
 
 export default function ExperienceTimeline() {
-  const sectionRef = useRef(null)
-
-  useEffect(() => {
-    if (sectionRef.current) {
-      gsap.from('.timeline-item', {
-        opacity: 0,
-        x: -50,
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 80%',
-          toggleActions: 'play none none reverse',
-        },
-        duration: 1,
-        stagger: 0.2,
-      })
-    }
-  }, [])
+  // Removed GSAP animation - using Framer Motion instead for better reliability
+  // GSAP ScrollTrigger was conflicting with Framer Motion causing visibility issues
 
   return (
-    <section ref={sectionRef} className="relative min-h-screen py-20 px-4 sm:px-6 lg:px-8">
+    <section className="relative min-h-screen py-20 px-4 sm:px-6 lg:px-8" style={{ zIndex: 1 }}>
       <div className="max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -110,8 +90,8 @@ export default function ExperienceTimeline() {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }}
-          className="relative"
+          viewport={{ once: true, margin: "-100px" }}
+          className="relative z-10"
         >
           {/* Timeline Line */}
           <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-purple-neon via-blue-neon to-purple-neon hidden md:block" />
@@ -123,7 +103,7 @@ export default function ExperienceTimeline() {
                 <motion.div
                   key={exp.id}
                   variants={itemVariants}
-                  className="timeline-item relative pl-0 md:pl-20"
+                  className="timeline-item relative pl-0 md:pl-20 z-10"
                 >
                   {/* Icon */}
                   <div className="absolute left-0 top-0 w-16 h-16 rounded-full glass border-2 flex items-center justify-center hidden md:flex"
@@ -135,7 +115,8 @@ export default function ExperienceTimeline() {
                   {/* Content Card */}
                   <motion.div
                     whileHover={{ scale: 1.02, x: 10 }}
-                    className="glass rounded-xl p-6 hover:border-purple-neon/50 transition-all duration-300"
+                    className="glass rounded-xl p-6 hover:border-purple-neon/50 transition-all duration-300 relative z-10"
+                    style={{ willChange: 'transform' }}
                   >
                     <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
                       <div>

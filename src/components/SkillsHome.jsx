@@ -73,7 +73,7 @@ const itemVariants = {
   },
 }
 
-export default function Skills() {
+export default function SkillsHome() {
   const sectionRef = useRef(null)
   const progressRefs = useRef([])
   const scrollTriggers = useRef([])
@@ -82,24 +82,26 @@ export default function Skills() {
     if (typeof window === 'undefined') return
 
     const ctx = gsap.context(() => {
-      // Animate progress bars with proper cleanup
-      progressRefs.current.forEach((ref, index) => {
-        if (ref && ref.parentElement) {
-          const skill = skills[index]
-          const trigger = ScrollTrigger.create({
-            trigger: ref.parentElement,
-            start: 'top 80%',
-            onEnter: () => {
-              gsap.to(ref, {
-                width: `${skill.level}%`,
-                duration: 1.5,
-                ease: 'power2.out',
-              })
-            },
-          })
-          scrollTriggers.current.push(trigger)
-        }
-      })
+      if (sectionRef.current) {
+        // Animate progress bars with proper cleanup
+        progressRefs.current.forEach((ref, index) => {
+          if (ref && ref.parentElement) {
+            const skill = skills[index]
+            const trigger = ScrollTrigger.create({
+              trigger: ref.parentElement,
+              start: 'top 80%',
+              onEnter: () => {
+                gsap.to(ref, {
+                  width: `${skill.level}%`,
+                  duration: 1.5,
+                  ease: 'power2.out',
+                })
+              },
+            })
+            scrollTriggers.current.push(trigger)
+          }
+        })
+      }
     }, sectionRef)
 
     return () => {
@@ -110,7 +112,7 @@ export default function Skills() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="relative min-h-screen py-20 px-4 sm:px-6 lg:px-8" style={{ zIndex: 1 }}>
+    <section ref={sectionRef} className="relative py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -118,9 +120,9 @@ export default function Skills() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h1 className="text-5xl md:text-6xl font-bold mb-4">
-            <span className="text-gradient">Skills</span>
-          </h1>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+            <span className="text-gradient">Skills & Technologies</span>
+          </h2>
           <p className="text-soft-white/70 text-lg max-w-2xl mx-auto">
             Teknologi dan tools yang saya kuasai untuk membangun solusi digital terbaik
           </p>
@@ -132,18 +134,18 @@ export default function Skills() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          className="skill-section mb-16 relative z-10"
+          className="skill-section-home mb-16"
         >
-          <h2 className="text-2xl font-semibold mb-8 text-center">Technical Skills</h2>
+          <h3 className="text-2xl font-semibold mb-8 text-center">Technical Skills</h3>
           <div className="space-y-6 max-w-3xl mx-auto">
             {skills.map((skill, index) => (
               <motion.div key={skill.name} variants={itemVariants}>
                 <div className="flex items-center justify-between mb-2">
                   <div className="flex items-center gap-3">
                     <skill.icon className="w-6 h-6 flex-shrink-0" style={{ color: skill.color }} />
-                    <span className="font-medium">{skill.name}</span>
+                    <span className="font-medium text-soft-white">{skill.name}</span>
                   </div>
-                  <span className="text-soft-white/70">{skill.level}%</span>
+                  <span className="text-soft-white/70 font-medium">{skill.level}%</span>
                 </div>
                 <div className="h-2 bg-dark-secondary rounded-full overflow-hidden relative">
                   <div
@@ -169,9 +171,9 @@ export default function Skills() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          className="skill-section mb-16 relative z-10"
+          className="skill-section-home"
         >
-          <h2 className="text-2xl font-semibold mb-8 text-center">Technologies</h2>
+          <h3 className="text-2xl font-semibold mb-8 text-center">Technologies</h3>
           <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-6">
             {skills.map((skill) => (
               <motion.div
@@ -191,49 +193,7 @@ export default function Skills() {
             ))}
           </div>
         </motion.div>
-
-        {/* Card Skills Section */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          className="skill-section relative z-10"
-        >
-          <h2 className="text-2xl font-semibold mb-8 text-center">Expertise Areas</h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            {[
-              {
-                title: 'Frontend Development',
-                description: 'React, Next.js, TypeScript, TailwindCSS',
-                icon: '🎨',
-              },
-              {
-                title: 'Backend Development',
-                description: 'Node.js, API Development, Database Design',
-                icon: '⚙️',
-              },
-              {
-                title: 'Game Server',
-                description: 'GTA SAMP, Server Management, Pawn Scripting',
-                icon: '🎮',
-              },
-            ].map((area, index) => (
-              <motion.div
-                key={area.title}
-                variants={itemVariants}
-                whileHover={{ scale: 1.03, y: -5 }}
-                className="glass rounded-xl p-6 hover:border-purple-neon/50 transition-all duration-300"
-              >
-                <div className="text-4xl mb-4">{area.icon}</div>
-                <h3 className="text-xl font-semibold mb-2">{area.title}</h3>
-                <p className="text-soft-white/70">{area.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
       </div>
     </section>
   )
 }
-

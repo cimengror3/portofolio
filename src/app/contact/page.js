@@ -1,15 +1,8 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { useEffect, useRef } from 'react'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import ContactForm from '@/components/ContactForm'
 import { FiMail, FiPhone, FiMapPin } from 'react-icons/fi'
-
-if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger)
-}
 
 const contactInfo = [
   {
@@ -36,26 +29,10 @@ const contactInfo = [
 ]
 
 export default function ContactPage() {
-  const sectionRef = useRef(null)
-
-  useEffect(() => {
-    if (sectionRef.current) {
-      gsap.from('.contact-info-item', {
-        opacity: 0,
-        y: 30,
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 80%',
-          toggleActions: 'play none none reverse',
-        },
-        duration: 1,
-        stagger: 0.2,
-      })
-    }
-  }, [])
+  // Removed GSAP animation - using Framer Motion instead for better reliability
 
   return (
-    <section ref={sectionRef} className="relative min-h-screen py-20 px-4 sm:px-6 lg:px-8">
+    <section className="relative min-h-screen py-20 px-4 sm:px-6 lg:px-8" style={{ zIndex: 1 }}>
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -81,10 +58,10 @@ export default function ContactPage() {
                 href={info.link}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 whileHover={{ scale: 1.05, y: -5 }}
-                className="contact-info-item glass rounded-xl p-6 text-center hover:border-purple-neon/50 transition-all duration-300"
+                className="contact-info-item glass rounded-xl p-6 text-center hover:border-purple-neon/50 transition-all duration-300 relative z-10"
               >
                 <div
                   className="w-16 h-16 mx-auto mb-4 rounded-full glass flex items-center justify-center"

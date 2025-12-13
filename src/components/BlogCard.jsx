@@ -10,10 +10,10 @@ export default function BlogCard({ post, index }) {
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
+        viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.5, delay: index * 0.1 }}
         whileHover={{ scale: 1.03, y: -10 }}
-        className="group glass rounded-2xl overflow-hidden hover:border-purple-neon/50 transition-all duration-300 cursor-pointer"
+        className="group glass rounded-2xl overflow-hidden hover:border-purple-neon/50 transition-all duration-300 cursor-pointer relative z-10"
       >
         <div className="relative h-64 overflow-hidden">
           <img

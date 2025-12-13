@@ -6,7 +6,7 @@ import BlogCard from '@/components/BlogCard'
 
 export default function BlogPage() {
   return (
-    <section className="relative min-h-screen py-20 px-4 sm:px-6 lg:px-8">
+    <section className="relative min-h-screen py-20 px-4 sm:px-6 lg:px-8" style={{ zIndex: 1 }}>
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

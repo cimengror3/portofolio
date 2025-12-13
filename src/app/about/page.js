@@ -1,13 +1,6 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { useEffect, useRef } from 'react'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
-
-if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger)
-}
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -31,26 +24,10 @@ const itemVariants = {
 }
 
 export default function About() {
-  const sectionRef = useRef(null)
-
-  useEffect(() => {
-    if (sectionRef.current) {
-      gsap.from('.about-content', {
-        opacity: 0,
-        y: 50,
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 80%',
-          end: 'bottom 20%',
-          toggleActions: 'play none none reverse',
-        },
-        duration: 1,
-      })
-    }
-  }, [])
+  // Removed GSAP animation - using Framer Motion instead for better reliability
 
   return (
-    <section ref={sectionRef} className="relative min-h-screen py-20 px-4 sm:px-6 lg:px-8">
+    <section className="relative min-h-screen py-20 px-4 sm:px-6 lg:px-8" style={{ zIndex: 1 }}>
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -69,11 +46,12 @@ export default function About() {
         <motion.div
           variants={containerVariants}
           initial="hidden"
-          animate="visible"
-          className="grid md:grid-cols-2 gap-12 items-center"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          className="grid md:grid-cols-2 gap-12 items-center relative z-10"
         >
           {/* Photo */}
-          <motion.div variants={itemVariants} className="about-content">
+          <motion.div variants={itemVariants} className="about-content relative z-10">
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-br from-purple-neon/50 to-blue-neon/50 rounded-2xl blur-2xl transform rotate-6" />
               <div className="relative glass rounded-2xl p-2 overflow-hidden">
@@ -87,7 +65,7 @@ export default function About() {
           </motion.div>
 
           {/* Bio */}
-          <motion.div variants={itemVariants} className="about-content space-y-6">
+          <motion.div variants={itemVariants} className="about-content space-y-6 relative z-10">
             <div>
               <h2 className="text-3xl font-bold mb-4 text-gradient">
                 Cimenk Dirgantara

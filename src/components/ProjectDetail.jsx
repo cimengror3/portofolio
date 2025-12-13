@@ -1,9 +1,6 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { useEffect, useRef } from 'react'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import { FiExternalLink, FiGithub, FiArrowLeft } from 'react-icons/fi'
 import Link from 'next/link'
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -12,30 +9,11 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 
-if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger)
-}
-
 export default function ProjectDetail({ project }) {
-  const sectionRef = useRef(null)
-
-  useEffect(() => {
-    if (sectionRef.current) {
-      gsap.from('.project-detail-content', {
-        opacity: 0,
-        y: 50,
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 80%',
-          toggleActions: 'play none none reverse',
-        },
-        duration: 1,
-      })
-    }
-  }, [])
+  // Removed GSAP animation - using Framer Motion instead for better reliability
 
   return (
-    <section ref={sectionRef} className="relative min-h-screen py-20 px-4 sm:px-6 lg:px-8">
+    <section className="relative min-h-screen py-20 px-4 sm:px-6 lg:px-8" style={{ zIndex: 1 }}>
       <div className="max-w-7xl mx-auto">
         {/* Back Button */}
         <Link href="/projects">
@@ -82,7 +60,13 @@ export default function ProjectDetail({ project }) {
 
         {/* Content */}
         <div className="grid md:grid-cols-3 gap-8 mb-12">
-          <div className="md:col-span-2 project-detail-content">
+          <motion.div 
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8 }}
+            className="md:col-span-2 project-detail-content relative z-10"
+          >
             <h2 className="text-3xl font-bold mb-6 text-gradient">About Project</h2>
             <p className="text-soft-white/80 leading-relaxed text-lg mb-8">
               {project.description}
@@ -113,9 +97,15 @@ export default function ProjectDetail({ project }) {
                 ))}
               </Swiper>
             </div>
-          </div>
+          </motion.div>
 
-          <div className="project-detail-content">
+          <motion.div 
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="project-detail-content relative z-10"
+          >
             <div className="glass rounded-xl p-6 sticky top-24">
               <h3 className="text-2xl font-semibold mb-6">Project Info</h3>
 
@@ -160,7 +150,7 @@ export default function ProjectDetail({ project }) {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
