@@ -107,9 +107,7 @@ export default function ContactForm() {
             name="name"
             value={formData.name}
             onChange={handleChange}
-            onChange={handleChange}
             className="w-full px-4 py-3 bg-dark-secondary border border-white/10 rounded-lg focus:outline-none focus:border-blue-primary/50 focus:ring-2 focus:ring-blue-primary/20 transition-all duration-300 text-soft-white"
-            placeholder="Masukkan nama Anda"
             placeholder="Masukkan nama Anda"
             disabled={isSubmitting}
           />
@@ -125,7 +123,6 @@ export default function ContactForm() {
             id="email"
             name="email"
             value={formData.email}
-            onChange={handleChange}
             onChange={handleChange}
             className="w-full px-4 py-3 bg-dark-secondary border border-white/10 rounded-lg focus:outline-none focus:border-blue-primary/50 focus:ring-2 focus:ring-blue-primary/20 transition-all duration-300 text-soft-white"
             placeholder="email@example.com"
@@ -143,7 +140,6 @@ export default function ContactForm() {
             name="message"
             value={formData.message}
             onChange={handleChange}
-            onChange={handleChange}
             rows={6}
             className="w-full px-4 py-3 bg-dark-secondary border border-white/10 rounded-lg focus:outline-none focus:border-blue-primary/50 focus:ring-2 focus:ring-blue-primary/20 transition-all duration-300 text-soft-white resize-none"
             placeholder="Tulis pesan Anda di sini..."
@@ -157,8 +153,8 @@ export default function ContactForm() {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             className={`flex items-center gap-3 p-4 rounded-lg ${status.type === 'success'
-                ? 'bg-green-500/20 border border-green-500/50 text-green-400'
-                : 'bg-red-500/20 border border-red-500/50 text-red-400'
+              ? 'bg-green-500/20 border border-green-500/50 text-green-400'
+              : 'bg-red-500/20 border border-red-500/50 text-red-400'
               }`}
           >
             {status.type === 'success' ? (
