@@ -1,0 +1,185 @@
+'use client'
+
+import { useEffect, useRef, useState } from 'react'
+import Matter from 'matter-js'
+
+export default function Lanyard({ imageSrc = '/images/cardid.jpeg' }) {
+    const containerRef = useRef(null)
+    const canvasRef = useRef(null)
+    const cardRef = useRef(null)
+    const [isHovered, setIsHovered] = useState(false)
+
+    useEffect(() => {
+        if (!containerRef.current || !canvasRef.current || !cardRef.current) return
+
+        // Physics constants
+        const engine = Matter.Engine.create()
+        const runner = Matter.Runner.create()
+        const render = Matter.Render.create({
+            element: containerRef.current,
+            canvas: canvasRef.current,
+            engine: engine,
+            options: {
+                width: 300,
+                height: 600, // Tall enough for the drop
+                background: 'transparent',
+                wireframes: false, // We will render visuals ourselves mostly, but letting Matter render the string is easiest
+                pixelRatio: window.devicePixelRatio
+            }
+        })
+
+        // Dimensions
+        const width = 300
+        const height = 600
+        const cardWidth = 220
+        const cardHeight = 350 // Approximate ID card ratio
+
+        // Bodies
+        // 1. Anchor Point (Fixed at top center)
+        const anchor = Matter.Bodies.circle(width / 2, 0, 10, {
+            isStatic: true,
+            render: { fillStyle: '#3b82f6' }
+        })
+
+        // 2. The Card Body
+        // We place it lower down. slightly offset to create swing
+        const cardBody = Matter.Bodies.rectangle(width / 2, 300, cardWidth, cardHeight, {
+            chamfer: { radius: 20 },
+            density: 0.005, // Lighter density
+            frictionAir: 0.05, // Air resistance for damping
+            restitution: 0.5, // Bounciness
+            render: {
+                visible: false // We render the card with React/DOM, physics body is invisible driver
+            }
+        })
+
+        // 3. The String (Constraints)
+        // We create a chain of constraints or generic bodies depending on desired stiffness
+        // A simple stiff constraint works well for a lanyard
+        const stringConstraint = Matter.Constraint.create({
+            bodyA: anchor,
+            pointA: { x: 0, y: 0 },
+            bodyB: cardBody,
+            pointB: { x: 0, y: -cardHeight / 2 + 20 }, // Attach near top of card
+            stiffness: 0.1, // Elasticity
+            damping: 0.5,
+            length: 250, // Length of lanyard
+            render: {
+                strokeStyle: '#ffffff',
+                lineWidth: 2,
+                anchors: false
+            }
+        })
+
+        // 4. Mouse Control
+        const mouse = Matter.Mouse.create(render.canvas)
+        const mouseConstraint = Matter.MouseConstraint.create(engine, {
+            mouse: mouse,
+            constraint: {
+                stiffness: 0.2,
+                render: {
+                    visible: false
+                }
+            }
+        })
+
+        // Allow scrolling through canvas (Matter blocks it by default)
+        mouseConstraint.mouse.element.removeEventListener("mousewheel", mouseConstraint.mouse.mousewheel)
+        mouseConstraint.mouse.element.removeEventListener("DOMMouseScroll", mouseConstraint.mouse.mousewheel)
+
+        // Add everything to world
+        Matter.World.add(engine.world, [anchor, cardBody, stringConstraint, mouseConstraint])
+
+        // Run
+        Matter.Runner.run(runner, engine)
+        Matter.Render.run(render)
+
+        // Sync Loop: Update React DOM Card position to match Physics Body
+        let animationFrameId
+        const updateCardPosition = () => {
+            if (!cardRef.current) return
+
+            const { x, y } = cardBody.position
+            const angle = cardBody.angle
+
+            // Transform the DOM element
+            // We subtract half width/height because physics position is center of mass, 
+            // but standard CSS top/left is top-left corner. 
+            // Actually easier to just use translate(-50%, -50%) in CSS and pass raw x/y
+            cardRef.current.style.transform = `translate(${x}px, ${y}px) rotate(${angle}rad)`
+
+            animationFrameId = requestAnimationFrame(updateCardPosition)
+        }
+        updateCardPosition()
+
+        // Cleanup
+        return () => {
+            Matter.Render.stop(render)
+            Matter.Runner.stop(runner)
+            Matter.World.clear(engine.world)
+            Matter.Engine.clear(engine)
+            cancelAnimationFrame(animationFrameId)
+            // Remove canvas if Matter created it (but we passed refs)
+            render.canvas.remove()
+            render.canvas = null
+            render.context = null
+            render.textures = {}
+        }
+    }, [])
+
+    return (
+        <div ref={containerRef} className="relative w-[300px] h-[600px] mx-auto overflow-visible select-none cursor-grab active:cursor-grabbing">
+            {/* Canvas for String visualization (Handled by Matter.Render) */}
+            <canvas ref={canvasRef} className="absolute inset-0 pointer-events-none" />
+
+            {/* The DOM Card (Visuals) */}
+            <div
+                ref={cardRef}
+                className="absolute top-0 left-0 w-[220px] h-[350px] pointer-events-none" // pointer-events-none because Matter mouse handles interaction
+                style={{
+                    // Initial position, will be overridden by JS immediately
+                    transform: 'translate(150px, 300px)',
+                    transformOrigin: '50% 50%',
+                    marginLeft: '-110px', // Center offset
+                    marginTop: '-175px'  // Center offset
+                }}
+            >
+                {/* Card Design */}
+                <div className="w-full h-full bg-dark-secondary/90 backdrop-blur-xl rounded-[20px] border border-white/20 shadow-2xl overflow-hidden relative group">
+                    {/* Header / Lanyard Hole */}
+                    <div className="absolute top-4 left-1/2 -translate-x-1/2 w-12 h-2 bg-neutral-800 rounded-full z-20"></div>
+                    <div className="absolute top-3 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full border-2 border-white/30 z-20 bg-dark"></div>
+
+                    {/* Glowing Border specific to Lanyard */}
+                    <div className="absolute inset-0 rounded-[20px] border-2 border-transparent bg-gradient-to-br from-blue-primary via-cyan-accent to-purple-600 opacity-20 group-hover:opacity-50 transition-opacity"></div>
+
+                    {/* Image Content */}
+                    <div className="relative h-full w-full p-4 flex flex-col items-center">
+                        {/* ID Photo Area */}
+                        <div className="w-32 h-32 rounded-full border-2 border-blue-primary/50 overflow-hidden mt-8 mb-4 shadow-glow-blue">
+                            <img src={imageSrc} alt="ID Profile" className="w-full h-full object-cover" />
+                        </div>
+
+                        {/* Text Content */}
+                        <h3 className="text-xl font-bold text-white mb-1">www.cimeng.web.id</h3>
+                        <p className="text-blue-primary font-mono text-sm mb-4">FULL STACK DEV</p>
+
+                        {/* Barcode / Visuals */}
+                        <div className="w-full h-12 bg-white/10 rounded my-2 flex items-center justify-center opacity-50">
+                            <div className="w-[90%] h-[60%] bg-[url('https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/QR_code_for_mobile_English_Wikipedia.svg/1200px-QR_code_for_mobile_English_Wikipedia.svg.png')] bg-contain bg-no-repeat bg-center mix-blend-overlay opacity-50"></div>
+                        </div>
+
+                        {/* Decorative details */}
+                        <div className="absolute bottom-4 left-0 right-0 flex justify-between px-6 text-[10px] text-white/30 font-mono">
+                            <span>ID: 8829-223</span>
+                            <span>VALID: ∞</span>
+                        </div>
+                    </div>
+
+                    {/* Glass Shine Effect */}
+                    <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/5 to-white/0 skew-x-12 pointer-events-none"></div>
+                </div>
+            </div>
+        </div>
+    )
+}

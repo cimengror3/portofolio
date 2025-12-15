@@ -19,7 +19,7 @@ export default function ProjectDetail({ project }) {
         <Link href="/projects">
           <motion.button
             whileHover={{ x: -5 }}
-            className="flex items-center gap-2 text-soft-white/70 hover:text-purple-neon mb-8 transition-colors"
+            className="flex items-center gap-2 text-soft-white/70 hover:text-blue-primary mb-8 transition-colors"
           >
             <FiArrowLeft />
             Back to Projects
@@ -60,7 +60,7 @@ export default function ProjectDetail({ project }) {
 
         {/* Content */}
         <div className="grid md:grid-cols-3 gap-8 mb-12">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -99,7 +99,7 @@ export default function ProjectDetail({ project }) {
             </div>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -116,7 +116,7 @@ export default function ProjectDetail({ project }) {
                     {project.techStack.map((tech) => (
                       <span
                         key={tech}
-                        className="px-3 py-1 bg-purple-neon/20 text-purple-neon rounded-lg text-sm"
+                        className="px-3 py-1 bg-blue-primary/20 text-blue-primary rounded-lg text-sm"
                       >
                         {tech}
                       </span>
@@ -130,7 +130,7 @@ export default function ProjectDetail({ project }) {
                       href={project.demoUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-purple-neon to-blue-neon rounded-lg font-semibold text-white hover:shadow-glow-purple transition-all duration-300"
+                      className="flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-blue-primary to-cyan-accent rounded-lg font-semibold text-white hover:shadow-glow-blue transition-all duration-300"
                     >
                       <FiExternalLink />
                       View Demo
@@ -141,7 +141,7 @@ export default function ProjectDetail({ project }) {
                       href={project.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-2 px-4 py-3 glass border border-white/20 rounded-lg font-semibold text-soft-white hover:border-purple-neon/50 transition-all duration-300"
+                      className="flex items-center justify-center gap-2 px-4 py-3 glass border border-white/20 rounded-lg font-semibold text-soft-white hover:border-blue-primary/50 transition-all duration-300"
                     >
                       <FiGithub />
                       View Code

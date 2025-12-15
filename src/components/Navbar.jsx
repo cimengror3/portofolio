@@ -34,9 +34,8 @@ export default function Navbar() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'glass shadow-glow-soft' : 'bg-transparent'
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'glass shadow-glow-soft' : 'bg-transparent'
+        }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
@@ -44,12 +43,16 @@ export default function Navbar() {
           <Link href="/" className="flex items-center space-x-2 group">
             <motion.div
               whileHover={{ scale: 1.1 }}
-              className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-neon to-blue-neon flex items-center justify-center"
+              className="w-12 h-12 rounded-full overflow-hidden border-2 border-blue-primary/50 relative"
             >
-              <span className="text-white font-bold text-lg">CD</span>
+              <img
+                src="/images/CKStore.jpeg"
+                alt="Logo"
+                className="w-full h-full object-cover"
+              />
             </motion.div>
             <span className="text-xl font-bold text-gradient hidden sm:block">
-              Cimenk Dirgantara
+              cimeng.web.id
             </span>
           </Link>
 
@@ -64,18 +67,17 @@ export default function Navbar() {
                   className="relative px-4 py-2 rounded-lg transition-all duration-300"
                 >
                   <span
-                    className={`relative z-10 ${
-                      isActive
-                        ? 'text-purple-neon font-semibold'
-                        : 'text-soft-white/80 hover:text-soft-white'
-                    }`}
+                    className={`relative z-10 ${isActive
+                      ? 'text-blue-primary font-semibold'
+                      : 'text-soft-white/80 hover:text-soft-white'
+                      }`}
                   >
                     {item.name}
                   </span>
                   {isActive && (
                     <motion.div
                       layoutId="activeTab"
-                      className="absolute inset-0 glass border border-purple-neon/50 rounded-lg"
+                      className="absolute inset-0 glass border border-blue-primary/50 rounded-lg"
                       initial={false}
                       transition={{ type: 'spring', stiffness: 500, damping: 30 }}
                     />
@@ -117,11 +119,10 @@ export default function Navbar() {
                     key={item.name}
                     href={item.href}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className={`block px-4 py-3 rounded-lg transition-all duration-300 ${
-                      isActive
-                        ? 'bg-purple-neon/20 text-purple-neon border border-purple-neon/50'
-                        : 'text-soft-white/80 hover:bg-dark-secondary hover:text-soft-white'
-                    }`}
+                    className={`block px-4 py-3 rounded-lg transition-all duration-300 ${isActive
+                      ? 'bg-blue-primary/20 text-blue-primary border border-blue-primary/50'
+                      : 'text-soft-white/80 hover:bg-dark-secondary hover:text-soft-white'
+                      }`}
                   >
                     {item.name}
                   </Link>

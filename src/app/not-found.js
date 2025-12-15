@@ -13,14 +13,14 @@ export default function NotFound() {
         <div className="flex gap-4 justify-center">
           <Link
             href="/"
-            className="px-6 py-3 bg-gradient-to-r from-purple-neon to-blue-neon rounded-lg font-semibold text-white hover:shadow-glow-purple transition-all duration-300 flex items-center gap-2"
+            className="px-6 py-3 bg-gradient-to-r from-blue-primary to-cyan-accent rounded-lg font-semibold text-white hover:shadow-glow-blue transition-all duration-300 flex items-center gap-2"
           >
             <FiHome />
             Back to Home
           </Link>
           <Link
             href="/projects"
-            className="px-6 py-3 glass border border-white/20 rounded-lg font-semibold text-soft-white hover:border-purple-neon/50 transition-all duration-300 flex items-center gap-2"
+            className="px-6 py-3 glass border border-white/20 rounded-lg font-semibold text-soft-white hover:border-blue-primary/50 transition-all duration-300 flex items-center gap-2"
           >
             <FiArrowLeft />
             View Projects

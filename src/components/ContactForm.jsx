@@ -99,7 +99,7 @@ export default function ContactForm() {
         {/* Name Field */}
         <div>
           <label htmlFor="name" className="block text-sm font-semibold mb-2">
-            Nama <span className="text-purple-neon">*</span>
+            Nama <span className="text-blue-primary">*</span>
           </label>
           <input
             type="text"
@@ -107,7 +107,9 @@ export default function ContactForm() {
             name="name"
             value={formData.name}
             onChange={handleChange}
-            className="w-full px-4 py-3 bg-dark-secondary border border-white/10 rounded-lg focus:outline-none focus:border-purple-neon/50 focus:ring-2 focus:ring-purple-neon/20 transition-all duration-300 text-soft-white"
+            onChange={handleChange}
+            className="w-full px-4 py-3 bg-dark-secondary border border-white/10 rounded-lg focus:outline-none focus:border-blue-primary/50 focus:ring-2 focus:ring-blue-primary/20 transition-all duration-300 text-soft-white"
+            placeholder="Masukkan nama Anda"
             placeholder="Masukkan nama Anda"
             disabled={isSubmitting}
           />
@@ -116,7 +118,7 @@ export default function ContactForm() {
         {/* Email Field */}
         <div>
           <label htmlFor="email" className="block text-sm font-semibold mb-2">
-            Email <span className="text-purple-neon">*</span>
+            Email <span className="text-blue-primary">*</span>
           </label>
           <input
             type="email"
@@ -124,7 +126,8 @@ export default function ContactForm() {
             name="email"
             value={formData.email}
             onChange={handleChange}
-            className="w-full px-4 py-3 bg-dark-secondary border border-white/10 rounded-lg focus:outline-none focus:border-purple-neon/50 focus:ring-2 focus:ring-purple-neon/20 transition-all duration-300 text-soft-white"
+            onChange={handleChange}
+            className="w-full px-4 py-3 bg-dark-secondary border border-white/10 rounded-lg focus:outline-none focus:border-blue-primary/50 focus:ring-2 focus:ring-blue-primary/20 transition-all duration-300 text-soft-white"
             placeholder="email@example.com"
             disabled={isSubmitting}
           />
@@ -133,15 +136,16 @@ export default function ContactForm() {
         {/* Message Field */}
         <div>
           <label htmlFor="message" className="block text-sm font-semibold mb-2">
-            Pesan <span className="text-purple-neon">*</span>
+            Pesan <span className="text-blue-primary">*</span>
           </label>
           <textarea
             id="message"
             name="message"
             value={formData.message}
             onChange={handleChange}
+            onChange={handleChange}
             rows={6}
-            className="w-full px-4 py-3 bg-dark-secondary border border-white/10 rounded-lg focus:outline-none focus:border-purple-neon/50 focus:ring-2 focus:ring-purple-neon/20 transition-all duration-300 text-soft-white resize-none"
+            className="w-full px-4 py-3 bg-dark-secondary border border-white/10 rounded-lg focus:outline-none focus:border-blue-primary/50 focus:ring-2 focus:ring-blue-primary/20 transition-all duration-300 text-soft-white resize-none"
             placeholder="Tulis pesan Anda di sini..."
             disabled={isSubmitting}
           />
@@ -152,11 +156,10 @@ export default function ContactForm() {
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            className={`flex items-center gap-3 p-4 rounded-lg ${
-              status.type === 'success'
+            className={`flex items-center gap-3 p-4 rounded-lg ${status.type === 'success'
                 ? 'bg-green-500/20 border border-green-500/50 text-green-400'
                 : 'bg-red-500/20 border border-red-500/50 text-red-400'
-            }`}
+              }`}
           >
             {status.type === 'success' ? (
               <FiCheck className="w-5 h-5 flex-shrink-0" />
@@ -173,7 +176,7 @@ export default function ContactForm() {
           disabled={isSubmitting}
           whileHover={{ scale: isSubmitting ? 1 : 1.05 }}
           whileTap={{ scale: isSubmitting ? 1 : 0.95 }}
-          className="w-full px-8 py-4 bg-gradient-to-r from-purple-neon to-blue-neon rounded-lg font-semibold text-white shadow-glow-purple hover:shadow-glow-soft transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full px-8 py-4 bg-gradient-to-r from-blue-primary to-cyan-accent rounded-lg font-semibold text-white shadow-glow-blue hover:shadow-glow-soft transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {isSubmitting ? (
             <>

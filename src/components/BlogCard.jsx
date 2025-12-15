@@ -13,7 +13,7 @@ export default function BlogCard({ post, index }) {
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.5, delay: index * 0.1 }}
         whileHover={{ scale: 1.03, y: -10 }}
-        className="group glass rounded-2xl overflow-hidden hover:border-purple-neon/50 transition-all duration-300 cursor-pointer relative z-10"
+        className="group glass rounded-2xl overflow-hidden hover:border-blue-primary/50 transition-all duration-300 cursor-pointer relative z-10"
       >
         <div className="relative h-64 overflow-hidden">
           <img
@@ -30,7 +30,7 @@ export default function BlogCard({ post, index }) {
         </div>
 
         <div className="p-6">
-          <h3 className="text-2xl font-bold mb-2 group-hover:text-purple-neon transition-colors line-clamp-2">
+          <h3 className="text-2xl font-bold mb-2 group-hover:text-blue-primary transition-colors line-clamp-2">
             {post.title}
           </h3>
           <p className="text-soft-white/70 mb-4 line-clamp-3">

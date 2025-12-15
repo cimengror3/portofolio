@@ -8,21 +8,22 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'dark': '#0d0d0d',
-        'dark-secondary': '#1a1a1a',
-        'border': '#1f1f1f',
-        'purple-neon': '#8b5cf6',
-        'blue-neon': '#3b82f6',
+        'dark': '#0a0a0a', // Slightly darker for better contrast
+        'dark-secondary': '#121212',
+        'border': '#1e293b', // Blue-tinted border
+        'blue-primary': '#3b82f6', // Electric Blue
+        'blue-secondary': '#2563eb', // Deeper Blue
+        'cyan-accent': '#06b6d4', // Cyan for gradients
         'soft-white': '#f3f4f6',
       },
       fontFamily: {
         'sans': ['Poppins', 'Inter', 'Sora', 'system-ui', 'sans-serif'],
       },
       boxShadow: {
-        'glow-purple': '0 0 20px rgba(139, 92, 246, 0.3)',
-        'glow-blue': '0 0 20px rgba(59, 130, 246, 0.3)',
-        'glow-soft': '0 0 30px rgba(139, 92, 246, 0.2)',
-        'depth': '0 20px 60px rgba(0, 0, 0, 0.5)',
+        'glow-blue': '0 0 25px rgba(59, 130, 246, 0.5)',
+        'glow-cyan': '0 0 25px rgba(6, 182, 212, 0.4)',
+        'glow-soft': '0 0 40px rgba(59, 130, 246, 0.2)',
+        'depth': '0 25px 80px -15px rgba(0, 0, 0, 0.6)',
       },
       backdropBlur: {
         'glass': '20px',

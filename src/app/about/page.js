@@ -1,6 +1,8 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import ParallaxSection from '@/components/ParallaxSection'
+import Lanyard from '@/components/Lanyard'
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -24,8 +26,6 @@ const itemVariants = {
 }
 
 export default function About() {
-  // Removed GSAP animation - using Framer Motion instead for better reliability
-
   return (
     <section className="relative min-h-screen py-20 px-4 sm:px-6 lg:px-8" style={{ zIndex: 1 }}>
       <div className="max-w-7xl mx-auto">
@@ -50,66 +50,62 @@ export default function About() {
           viewport={{ once: true, margin: "-100px" }}
           className="grid md:grid-cols-2 gap-12 items-center relative z-10"
         >
-          {/* Photo */}
-          <motion.div variants={itemVariants} className="about-content relative z-10">
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-neon/50 to-blue-neon/50 rounded-2xl blur-2xl transform rotate-6" />
-              <div className="relative glass rounded-2xl p-2 overflow-hidden">
-                <img
-                  src="https://via.placeholder.com/600x800/8b5cf6/ffffff?text=Cimenk+Dirgantara"
-                  alt="Cimenk Dirgantara"
-                  className="w-full h-auto rounded-xl object-cover"
-                />
+          {/* Photo using Lanyard */}
+          <motion.div variants={itemVariants} className="about-content relative z-10 flex justify-center h-[600px] overflow-visible">
+            <ParallaxSection offset={-30}>
+              <div className="-mt-20">
+                <Lanyard imageSrc="/images/cardid.jpeg" />
               </div>
-            </div>
+            </ParallaxSection>
           </motion.div>
 
           {/* Bio */}
           <motion.div variants={itemVariants} className="about-content space-y-6 relative z-10">
-            <div>
-              <h2 className="text-3xl font-bold mb-4 text-gradient">
-                Cimenk Dirgantara
-              </h2>
-              <p className="text-xl text-soft-white/80 mb-6">
-                Developer | Web | App | Game Server
-              </p>
-            </div>
+            <ParallaxSection offset={30}>
+              <div>
+                <h2 className="text-3xl font-bold mb-4 text-gradient">
+                  www.cimeng.web.id
+                </h2>
+                <p className="text-xl text-soft-white/80 mb-6">
+                  Developer | Web | App | Game Server
+                </p>
+              </div>
 
-            <div className="space-y-4 text-soft-white/80 leading-relaxed">
-              <p>
-                Seorang Developer yang berdedikasi dengan passion dalam membangun solusi digital yang inovatif. 
-                Saya memiliki pengalaman luas dalam pengembangan website, aplikasi, dan game server.
-              </p>
-              <p>
-                Dengan pendekatan yang detail dan fokus pada kualitas, saya selalu berusaha memberikan hasil 
-                terbaik untuk setiap project. Mulai dari website company profile hingga game server kompleks, 
-                setiap project dikerjakan dengan standar profesional yang tinggi.
-              </p>
-              <p>
-                Selain development, saya juga aktif dalam komunitas developer dan senang berbagi pengetahuan 
-                melalui blog dan diskusi teknis. Saya percaya bahwa teknologi harus digunakan untuk menciptakan 
-                solusi yang bermanfaat dan memberikan nilai tambah.
-              </p>
-            </div>
+              <div className="space-y-4 text-soft-white/80 leading-relaxed">
+                <p>
+                  Seorang Developer yang berdedikasi dengan passion dalam membangun solusi digital yang inovatif.
+                  Saya memiliki pengalaman luas dalam pengembangan website, aplikasi, dan game server.
+                </p>
+                <p>
+                  Dengan pendekatan yang detail dan fokus pada kualitas, saya selalu berusaha memberikan hasil
+                  terbaik untuk setiap project. Mulai dari website company profile hingga game server kompleks,
+                  setiap project dikerjakan dengan standar profesional yang tinggi.
+                </p>
+                <p>
+                  Selain development, saya juga aktif dalam komunitas developer dan senang berbagi pengetahuan
+                  melalui blog dan diskusi teknis. Saya percaya bahwa teknologi harus digunakan untuk menciptakan
+                  solusi yang bermanfaat dan memberikan nilai tambah.
+                </p>
+              </div>
 
-            <div className="flex flex-wrap gap-4 pt-4">
-              <div className="glass px-6 py-3 rounded-lg">
-                <div className="text-2xl font-bold text-purple-neon">50+</div>
-                <div className="text-sm text-soft-white/70">Projects Completed</div>
+              <div className="flex flex-wrap gap-4 pt-4">
+                <div className="glass px-6 py-3 rounded-lg">
+                  <div className="text-2xl font-bold text-blue-primary">50+</div>
+                  <div className="text-sm text-soft-white/70">Projects Completed</div>
+                </div>
+                <div className="glass px-6 py-3 rounded-lg">
+                  <div className="text-2xl font-bold text-cyan-accent">5+</div>
+                  <div className="text-sm text-soft-white/70">Years Experience</div>
+                </div>
+                <div className="glass px-6 py-3 rounded-lg">
+                  <div className="text-2xl font-bold text-blue-primary">100+</div>
+                  <div className="text-sm text-soft-white/70">Happy Clients</div>
+                </div>
               </div>
-              <div className="glass px-6 py-3 rounded-lg">
-                <div className="text-2xl font-bold text-blue-neon">5+</div>
-                <div className="text-sm text-soft-white/70">Years Experience</div>
-              </div>
-              <div className="glass px-6 py-3 rounded-lg">
-                <div className="text-2xl font-bold text-purple-neon">100+</div>
-                <div className="text-sm text-soft-white/70">Happy Clients</div>
-              </div>
-            </div>
+            </ParallaxSection>
           </motion.div>
         </motion.div>
       </div>
     </section>
   )
 }
-

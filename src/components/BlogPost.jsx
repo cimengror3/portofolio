@@ -12,7 +12,7 @@ export default function BlogPost({ post }) {
         <Link href="/blog">
           <motion.button
             whileHover={{ x: -5 }}
-            className="flex items-center gap-2 text-soft-white/70 hover:text-purple-neon mb-8 transition-colors"
+            className="flex items-center gap-2 text-soft-white/70 hover:text-blue-primary mb-8 transition-colors"
           >
             <FiArrowLeft />
             Back to Blog

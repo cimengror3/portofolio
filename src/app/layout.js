@@ -3,6 +3,8 @@ import './globals.css'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import { Providers } from '@/components/Providers'
+import PageTransition from '@/components/PageTransition'
+import GradientBackground from '@/components/GradientBackground'
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -21,9 +23,9 @@ const sora = Sora({
 })
 
 export const metadata = {
-  title: 'Cimenk Dirgantara | Developer Portfolio',
+  title: 'www.cimeng.web.id | Developer Portfolio',
   description: 'Developer website, aplikasi, dan Server Game. Portfolio profesional dengan pengalaman dalam web development, aplikasi, dan game server development.',
-  keywords: 'developer, web development, game server, portfolio, cimenk dirgantara',
+  keywords: 'developer, web development, game server, portfolio, Cimenk Dev',
 }
 
 export default function RootLayout({ children }) {
@@ -31,10 +33,13 @@ export default function RootLayout({ children }) {
     <html lang="id" className="scroll-smooth">
       <body className={`${poppins.variable} ${inter.variable} ${sora.variable} font-sans bg-dark text-soft-white antialiased`}>
         <Providers>
+          <GradientBackground />
           <Navbar />
-          <main className="min-h-screen">
-            {children}
-          </main>
+          <PageTransition>
+            <main className="min-h-screen">
+              {children}
+            </main>
+          </PageTransition>
           <Footer />
         </Providers>
       </body>

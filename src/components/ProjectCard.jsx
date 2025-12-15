@@ -12,7 +12,7 @@ export default function ProjectCard({ project, index }) {
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
       whileHover={{ scale: 1.03, y: -10 }}
-      className="group glass rounded-2xl overflow-hidden hover:border-purple-neon/50 transition-all duration-300 relative z-10"
+      className="group glass rounded-2xl overflow-hidden hover:border-blue-primary/50 transition-all duration-300 relative z-10"
     >
       <div className="relative h-64 overflow-hidden">
         <img
@@ -29,7 +29,7 @@ export default function ProjectCard({ project, index }) {
       </div>
 
       <div className="p-6">
-        <h3 className="text-2xl font-bold mb-2 group-hover:text-purple-neon transition-colors">
+        <h3 className="text-2xl font-bold mb-2 group-hover:text-blue-primary transition-colors">
           {project.title}
         </h3>
         <p className="text-soft-white/70 mb-4 line-clamp-2">
@@ -40,7 +40,7 @@ export default function ProjectCard({ project, index }) {
           {project.techStack.slice(0, 3).map((tech) => (
             <span
               key={tech}
-              className="px-2 py-1 bg-purple-neon/20 text-purple-neon rounded text-xs"
+              className="px-2 py-1 bg-blue-primary/20 text-blue-primary rounded text-xs"
             >
               {tech}
             </span>
@@ -55,7 +55,7 @@ export default function ProjectCard({ project, index }) {
         <Link href={`/projects/${project.slug}`}>
           <motion.button
             whileHover={{ x: 5 }}
-            className="flex items-center gap-2 text-purple-neon font-semibold group-hover:text-blue-neon transition-colors"
+            className="flex items-center gap-2 text-blue-primary font-semibold group-hover:text-cyan-accent transition-colors"
           >
             Detail Project
             <FiArrowRight className="group-hover:translate-x-1 transition-transform" />

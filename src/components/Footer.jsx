@@ -33,7 +33,7 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <h3 className="text-2xl font-bold text-gradient mb-4">
-              Cimenk Dirgantara
+              cimeng.web.id
             </h3>
             <p className="text-soft-white/70 mb-4">
               Developer website, aplikasi, dan Server Game. Membangun solusi digital yang inovatif dan berkualitas tinggi.
@@ -47,7 +47,7 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.2, y: -5 }}
                   whileTap={{ scale: 0.9 }}
-                  className="w-10 h-10 rounded-lg glass flex items-center justify-center hover:border-purple-neon/50 transition-all duration-300"
+                  className="w-10 h-10 rounded-lg glass flex items-center justify-center hover:border-blue-primary/50 transition-all duration-300"
                   aria-label={social.label}
                 >
                   <social.icon className="w-5 h-5" />
@@ -65,7 +65,7 @@ export default function Footer() {
                   <li key={link.name}>
                     <Link
                       href={link.href}
-                      className="text-soft-white/70 hover:text-purple-neon transition-colors duration-300"
+                      className="text-soft-white/70 hover:text-blue-primary transition-colors duration-300"
                     >
                       {link.name}
                     </Link>
@@ -79,7 +79,7 @@ export default function Footer() {
           <div>
             <h4 className="text-lg font-semibold mb-4">Get In Touch</h4>
             <p className="text-soft-white/70 mb-2">
-              Email: <a href="mailto:cs@cimeng.web.id" className="text-purple-neon hover:underline">cs@cimeng.web.id</a>
+              Email: <a href="mailto:cs@cimeng.web.id" className="text-blue-primary hover:underline">cs@cimeng.web.id</a>
             </p>
             <p className="text-soft-white/70">
               Available for freelance projects and collaborations.
@@ -90,7 +90,7 @@ export default function Footer() {
         {/* Copyright */}
         <div className="border-t border-white/10 pt-8 text-center">
           <p className="text-soft-white/60">
-            © {new Date().getFullYear()} Cimenk Dirgantara. All rights reserved.
+            © {new Date().getFullYear()} cimeng.web.id. All rights reserved.
           </p>
         </div>
       </div>

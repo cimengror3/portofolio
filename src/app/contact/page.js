@@ -10,7 +10,7 @@ const contactInfo = [
     title: 'Email',
     content: 'cs@cimeng.web.id',
     link: 'mailto:cs@cimeng.web.id',
-    color: '#8b5cf6',
+    color: '#3b82f6',
   },
   {
     icon: FiPhone,
@@ -24,7 +24,7 @@ const contactInfo = [
     title: 'Location',
     content: 'Indonesia',
     link: '#',
-    color: '#8b5cf6',
+    color: '#3b82f6',
   },
 ]
 
@@ -61,7 +61,7 @@ export default function ContactPage() {
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 whileHover={{ scale: 1.05, y: -5 }}
-                className="contact-info-item glass rounded-xl p-6 text-center hover:border-purple-neon/50 transition-all duration-300 relative z-10"
+                className="contact-info-item glass rounded-xl p-6 text-center hover:border-blue-primary/50 transition-all duration-300 relative z-10"
               >
                 <div
                   className="w-16 h-16 mx-auto mb-4 rounded-full glass flex items-center justify-center"

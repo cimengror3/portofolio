@@ -11,7 +11,7 @@ const experiences = [
     period: '2020 - Present',
     description: 'Mengembangkan berbagai website dan aplikasi untuk klien dengan teknologi modern seperti Next.js, React, dan Node.js. Fokus pada kualitas code, performa, dan user experience.',
     icon: FiCode,
-    color: '#8b5cf6',
+    color: '#3b82f6',
   },
   {
     id: 2,
@@ -29,7 +29,7 @@ const experiences = [
     period: '2021 - Present',
     description: 'Membangun platform e-commerce khusus untuk kebutuhan developer dengan fitur lengkap termasuk payment gateway, manajemen produk, dan sistem inventory.',
     icon: FiTrendingUp,
-    color: '#8b5cf6',
+    color: '#06b6d4',
   },
   {
     id: 4,
@@ -94,7 +94,7 @@ export default function ExperienceTimeline() {
           className="relative z-10"
         >
           {/* Timeline Line */}
-          <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-purple-neon via-blue-neon to-purple-neon hidden md:block" />
+          <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-primary via-cyan-accent to-blue-primary hidden md:block" />
 
           <div className="space-y-12">
             {experiences.map((exp, index) => {
@@ -115,13 +115,13 @@ export default function ExperienceTimeline() {
                   {/* Content Card */}
                   <motion.div
                     whileHover={{ scale: 1.02, x: 10 }}
-                    className="glass rounded-xl p-6 hover:border-purple-neon/50 transition-all duration-300 relative z-10"
+                    className="glass rounded-xl p-6 hover:border-blue-primary/50 transition-all duration-300 relative z-10"
                     style={{ willChange: 'transform' }}
                   >
                     <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
                       <div>
                         <h3 className="text-2xl font-bold mb-1">{exp.title}</h3>
-                        <p className="text-purple-neon font-semibold">{exp.company}</p>
+                        <p className="text-blue-primary font-semibold">{exp.company}</p>
                       </div>
                       <span className="text-soft-white/70 text-sm mt-2 md:mt-0">
                         {exp.period}
