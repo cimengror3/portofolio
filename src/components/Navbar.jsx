@@ -47,7 +47,7 @@ export default function Navbar() {
               className="w-12 h-12 rounded-full overflow-hidden border-2 border-blue-primary/50 relative"
             >
               <Image
-                src="/images/CKStore.jpeg"
+                src="/images/CKStore.webp"
                 alt="Logo"
                 fill
                 className="object-cover"

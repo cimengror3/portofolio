@@ -54,7 +54,7 @@ export default function About() {
           <motion.div variants={itemVariants} className="about-content relative z-10 flex justify-center h-[600px] overflow-visible">
             <ParallaxSection offset={-30}>
               <div className="-mt-20">
-                <Lanyard imageSrc="/images/cardid.jpeg" />
+                <Lanyard imageSrc="/images/cardid.webp" />
               </div>
             </ParallaxSection>
           </motion.div>

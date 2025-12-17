@@ -48,7 +48,7 @@ export default function Hero() {
       <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div className="mb-0 relative min-h-[400px] flex justify-center -mt-20">
           {/* Lanyard Physics Component */}
-          <Lanyard imageSrc="/images/cardid.jpeg" />
+          <Lanyard imageSrc="/images/cardid.webp" />
 
           {/* Scroll Indicator - Positioned relative to the lanyard container */}
           <motion.div

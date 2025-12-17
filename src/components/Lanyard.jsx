@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react'
 import Matter from 'matter-js'
 
-export default function Lanyard({ imageSrc = '/images/cardid.jpeg' }) {
+export default function Lanyard({ imageSrc = '/images/cardid.webp' }) {
     const containerRef = useRef(null)
     const canvasRef = useRef(null)
     const cardRef = useRef(null)
