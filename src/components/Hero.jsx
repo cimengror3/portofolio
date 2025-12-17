@@ -20,9 +20,9 @@ export default function Hero() {
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
       style={{ zIndex: 1 }}
     >
-      {/* Particle Background */}
+      {/* Particle Background - Reduced count for performance */}
       <div className="particles">
-        {[...Array(20)].map((_, i) => (
+        {[...Array(15)].map((_, i) => (
           <div
             key={i}
             className="particle"

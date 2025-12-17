@@ -32,7 +32,8 @@ export default function Lanyard({ imageSrc = '/images/cardid.jpeg' }) {
                 height: height,
                 background: 'transparent',
                 wireframes: false,
-                pixelRatio: window.devicePixelRatio
+                // Cap pixelRatio at 2 for performance on high-density mobile screens
+                pixelRatio: Math.min(window.devicePixelRatio, 2)
             }
         })
 
